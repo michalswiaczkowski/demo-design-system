@@ -16,19 +16,26 @@ export default function SignIn({ onSignUp }: SignInProps) {
         bordered
         title="Sign in"
         description="Enter your credentials"
-      >
-        <Input label="Email" state="default" />
-        <Input label="Password" state="default" type="password" />
-        <Button variant="ghost" size="md" label="Forgot password?" fullWidth />
-        <Button variant="primary" size="md" label="Sign in" fullWidth />
-        <Button
-          variant="ghost"
-          size="md"
-          label="Don't have an account?"
-          fullWidth
-          onClick={onSignUp}
-        />
-      </Card>
+        fields={
+          <>
+            <Input label="Email" state="default" />
+            <Input label="Password" state="default" type="password" />
+          </>
+        }
+        actions={
+          <>
+            <Button variant="ghost" size="md" label="Forgot password?" fullWidth />
+            <Button variant="primary" size="md" label="Sign in" fullWidth />
+            <Button
+              variant="ghost"
+              size="md"
+              label="Don't have an account?"
+              fullWidth
+              onClick={onSignUp}
+            />
+          </>
+        }
+      />
     </div>
   );
 }
