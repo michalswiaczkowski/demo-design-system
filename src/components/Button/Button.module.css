@@ -1,21 +1,53 @@
 .button {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.15s ease;
+  transition: opacity 0.15s ease;
 }
-.primary { background-color: #2563eb; color: #ffffff; }
-.primary:hover { background-color: #1d4ed8; }
-.secondary { background-color: #e5e7eb; color: #1f2937; }
-.secondary:hover { background-color: #d1d5db; }
-.ghost { background-color: transparent; color: #2563eb; }
-.ghost:hover { background-color: #eff6ff; }
-.sm { padding: 6px 12px; font-size: 13px; }
-.md { padding: 8px 16px; font-size: 14px; }
-.lg { padding: 12px 24px; font-size: 16px; }
-.fullWidth { width: 100%; }
-.disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+
+.button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Variants */
+.primary {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.secondary {
+  background-color: #e5e7eb;
+  color: #1f2937;
+}
+
+.ghost {
+  background-color: transparent;
+  color: #2563eb;
+}
+
+/* Sizes */
+.sm {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.md {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.lg {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+
+/* Full width */
+.fullWidth {
+  width: 100%;
+}

@@ -1,47 +1,48 @@
 import React from "react";
 import styles from "./Input.module.css";
 
+type InputState = "default" | "focused" | "error" | "disabled";
+
 interface InputProps {
   label: string;
   placeholder?: string;
-  type?: "text" | "email" | "password";
-  required?: boolean;
-  disabled?: boolean;
-  error?: string;
   helperText?: string;
+  required?: boolean;
+  state?: InputState;
   value?: string;
-  onChange?: (value: string) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type?: string;
 }
 
-export const Input: React.FC<InputProps> = ({
+export default function Input({
   label,
   placeholder = "",
-  type = "text",
-  required = false,
-  disabled = false,
-  error,
   helperText,
+  required = false,
+  state = "default",
   value,
   onChange,
-}) => {
+  type = "text",
+}: InputProps) {
   return (
-    <div className={styles.wrapper}>
-      <label className={styles.label}>
-        {label}{required && <span className={styles.required}>*</span>}
-      </label>
+    <div className={`${styles.wrapper} ${styles[state]}`}>
+      <div className={styles.labelRow}>
+        <label className={styles.label}>{label}</label>
+        {required && <span className={styles.asterisk}>*</span>}
+      </div>
       <input
-        className={`${styles.input} ${error ? styles.error : ""} ${disabled ? styles.disabled : ""}`}
-        type={type}
+        className={styles.field}
         placeholder={placeholder}
-        disabled={disabled}
+        disabled={state === "disabled"}
         value={value}
-        onChange={(e) => onChange?.(e.target.value)}
+        onChange={onChange}
+        type={type}
       />
-      {(error || helperText) && (
-        <span className={error ? styles.errorText : styles.helperText}>
-          {error || helperText}
-        </span>
+      {state === "error" ? (
+        <span className={styles.errorText}>This field is required</span>
+      ) : (
+        helperText && <span className={styles.helperText}>{helperText}</span>
       )}
     </div>
   );
-};
+}
